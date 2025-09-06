@@ -1,0 +1,1 @@
+pip install hazm==0.9.1
