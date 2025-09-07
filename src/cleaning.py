@@ -15,44 +15,47 @@ import os
 import logging
 from src.utils import read_config, read_df
 
-
-
-
 def load_and_preprocess_data(config):
     """
     Loads raw data, cleans it, splits it into training and testing sets,
     and saves them to the processed data directory.
     """
+    text_col = config.get('DF', 'text_col')
+    label_col = config.get('DF', 'label_col')
+    processed_path = config.get('DATA', 'processed_path')
+
     df = read_df(config)
 
     # Basic cleaning: Drop rows with missing values in text or label columns
-    df.dropna(subset=[config.get('DF', 'text_col'), config.get('DF', 'label_col')], inplace=True)
-    logging.info(f"Data shape after dropping missing values: {df.shape}")
+    df = df.dropna()
+    print(f"Data shape: {df.shape}")
     
     # Ensure text column is of type string
-    df[config.TEXT_COLUMN] = df[config.TEXT_COLUMN].astype(str)
+    df[text_col] = df[text_col].astype(str)
 
     # Split the data into training and testing sets
-    X = df[config.TEXT_COLUMN]
-    y = df[config.LABEL_COLUMN]
+    X = df[text_col]
+    y = df[label_col]
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=config.TEST_SIZE, random_state=config.RANDOM_STATE, stratify=y
+        X, y, test_size=float(config.get('MODEL', 'test_size')),
+        random_state=int(config.get('MODEL', 'random_state')),
+        stratify=y
     )
-    logging.info(f"Data split into {len(X_train)} training samples and {len(X_test)} testing samples.")
+    print(f"Data split into {len(X_train)} training samples and {len(X_test)} testing samples.")
 
     # Create processed data directory if it doesn't exist
-    os.makedirs(config.PROCESSED_DATA_PATH, exist_ok=True)
+    os.makedirs(processed_path, exist_ok=True)
 
     # Save the split data to new CSV files
-    train_df = pd.DataFrame({config.TEXT_COLUMN: X_train, config.LABEL_COLUMN: y_train})
-    test_df = pd.DataFrame({config.TEXT_COLUMN: X_test, config.LABEL_COLUMN: y_test})
+    train_df = pd.DataFrame({text_col: X_train, label_col: y_train})
+    test_df = pd.DataFrame({text_col: X_test, label_col: y_test})
 
-    train_df.to_csv(config.TRAIN_DATA_PATH, index=False)
-    test_df.to_csv(config.TEST_DATA_PATH, index=False)
-    logging.info(f"Training data saved to {config.TRAIN_DATA_PATH}")
-    logging.info(f"Testing data saved to {config.TEST_DATA_PATH}")
-    logging.info("Data preprocessing finished successfully.")
+    train_df.to_csv(processed_path+'/train.csv', index=False)
+    test_df.to_csv(processed_path+'/test.csv', index=False)
+    print("Data preprocessing finished successfully.")
+    return X_train, X_test, y_train, y_test
 
 if __name__ == '__main__':
-    preprocess_data()
+    config = read_config()
+    load_and_preprocess_data(config)
