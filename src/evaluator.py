@@ -1,6 +1,5 @@
 import os
 import sys
-import pandas as pd
 import joblib
 import logging
 from sklearn.metrics import classification_report, accuracy_score
