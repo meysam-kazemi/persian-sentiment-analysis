@@ -1,18 +1,8 @@
 import os
 import sys
 import pandas as pd
-import string
-import re
-import hazm
-from hazm import Normalizer
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.utils import read_config
-
-import pandas as pd
 from sklearn.model_selection import train_test_split
-import os
-
-import logging
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.utils import read_config, read_df
 
 def load_and_preprocess_data(config):
