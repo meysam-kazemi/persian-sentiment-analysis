@@ -1,10 +1,13 @@
 # Snappfood Sentiment Analysis 🍲
 
-![Project Banner](https://img.shields.io/badge/Status-Completed-success)
+[![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![License: apache](https://img.shields.io/badge/license-Apache%202-blue)](https://github.com/meysam-kazemi/image-classification/blob/main/LICENSE)
 [![Hugging Face Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-yellow)](https://huggingface.co/HooshvareLab/bert-base-parsbert-uncased)
 
-A machine learning project to classify the sentiment of user comments from Snappfood. This repository provides a full pipeline from data preprocessing to model training, evaluation, and an interactive web demo. It compares a classic machine learning model (TF-IDF + SVM) with a modern transformer-based approach (ParsBERT + SVM).
+A machine learning project to classify the sentiment of user comments from Snappfood. This repository provides a full pipeline from data preprocessing to model training, evaluation, and an interactive web demo. It compares a classic machine learning model (TF-IDF + SVM) with a modern transformer-based approach (ParsBERT + NN).
+
+![vid](https://github.com/meysam-kazemi/persian-sentiment-analysis/blob/main/vid/sentim_.gif)
 
 ---
 
@@ -23,20 +26,26 @@ A machine learning project to classify the sentiment of user comments from Snapp
 The repository is organized to ensure clarity and scalability.
 
 ```
-.
-├── config.ini                  # Configuration file for paths and model parameters
-├── data/
-│   ├── Snappfood - Sentiment Analysis.csv  # Raw dataset
-│   └── snappfood-processed/      # Processed and split data (train/test)
-├── models/                     # Saved trained models (.pkl)
-├── src/
-│   ├── read_file.py            # Script for data loading and preprocessing
-│   ├── train_models.py         # Script for training both models
-│   ├── evaluator.py            # Script for evaluating model performance
-│   └── utils.py                # Utility functions (e.g., config reader)
-├── app.py                      # Gradio web application for live demo
-├── requirements.txt            # Project dependencies
-└── README.md                   # This file
+├── app.py
+├── config.ini
+├── data
+│   ├── snappfood-processed
+│   └── Snappfood - Sentiment Analysis.csv
+├── LICENSE
+├── models
+│   ├── bert_nn_model.pth
+│   ├── tfidf_svm_model.pkl
+│   └── tfidf_vectorizer.pkl
+├── README.md
+├── requirements.txt
+├── src
+│   ├── bert_classifier.py
+│   ├── evaluator.py
+│   ├── read_file.py
+│   ├── train_models.py
+│   └── utils.py
+└── vid
+    └── sentim_.gif
 ```
 
 ---
@@ -47,7 +56,7 @@ Follow these instructions to set up and run the project on your local machine.
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.9+
 - pip package manager
 
 ### Installation
@@ -120,19 +129,6 @@ The project pipeline is executed through the scripts in the `src/` directory.
 
 ---
 
-## 📊 Model Performance
-
-The following table shows the performance of the models on the test dataset. The ParsBERT-based model is expected to outperform the TF-IDF baseline due to its deep understanding of language context.
-
-| Model               | Accuracy | Precision | Recall | F1-Score (Macro) |
-| ------------------- | :------: | :-------: | :----: | :--------------: |
-| **TF-IDF + SVM** |   *TBD* |   *TBD* | *TBD* |      *TBD* |
-| **ParsBERT + SVM** |   *TBD* |   *TBD* | *TBD* |      *TBD* |
-
-*(You can fill in the "TBD" values with the results from running the `evaluator.py` script.)*
-
----
-
 ## 📄 License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the Apache License. See the `LICENSE` file for more details.
