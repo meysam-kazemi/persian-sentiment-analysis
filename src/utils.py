@@ -19,3 +19,9 @@ def read_df(config):
         engine=config.get('DATA', 'engine')
         )
     return df
+
+if __name__=="__main__":
+    config = read_config()
+    df = read_df(config)
+    print(df.columns)
+    print(df.head())
