@@ -37,10 +37,11 @@ def predict_sentiment(comment):
 
     # Predict the sentiment
     prediction = model.predict(comment_vector)[0]
+    print(prediction)
 
-    if prediction == 1:
+    if prediction == 0:
         sentiment = "Positive"
-    elif prediction == 0:
+    elif prediction == 1:
         sentiment = "Negative"
     else:
         sentiment = "Neutral" # Or handle other cases as needed
