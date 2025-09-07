@@ -25,7 +25,7 @@ def train_bert_classifier(model, dataloader, device):
     classifier = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.AdamW(classifier.parameters(), lr=2e-5)
-    epochs = 2
+    epochs = 50
     for epoch in range(epochs):
         classifier.train()
         total_loss = 0
