@@ -7,9 +7,8 @@
 
 A machine learning project to classify the sentiment of user comments from Snappfood. This repository provides a full pipeline from data preprocessing to model training, evaluation, and an interactive web demo. It compares a classic machine learning model (TF-IDF + SVM) with a modern transformer-based approach (ParsBERT + NN).
 
-![vid](https://github.com/meysam-kazemi/persian-sentiment-analysis/blob/main/vid/sentim_.gif)
+![vid](https://github.com/meysam-kazemi/persian-sentiment-analysis/blob/main/vid/vid.gif)
 
-![vid](https://github.com/meysam-kazemi/persian-sentiment-analysis/blob/main/vid/sentim.webm)
 ---
 
 ## ✨ Features
