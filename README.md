@@ -9,6 +9,7 @@ A machine learning project to classify the sentiment of user comments from Snapp
 
 ![vid](https://github.com/meysam-kazemi/persian-sentiment-analysis/blob/main/vid/sentim_.gif)
 
+![vid](https://github.com/meysam-kazemi/persian-sentiment-analysis/blob/main/vid/sentim.webm)
 ---
 
 ## ✨ Features
